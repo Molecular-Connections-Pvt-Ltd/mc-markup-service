@@ -58,10 +58,10 @@ public static String getXpathByKey(String key,String doi){
 	case "Datasets":
 		break;
 	case "Fragment":
-		xpath="//object-id[text()=\""+doi+"\"]/..";
+		xpath="//object-id[@pub-id-type=\"doi\" and text()=\""+doi+"\"][not(parent::fig[not(@specific-use) and ancestor::fig-group])]/parent::* | //object-id[@pub-id-type=\"doi\" and text()=\""+doi+"\"][parent::fig[not(@specific-use) and ancestor::fig-group]]/ancestor::fig-group | //article-id[@pub-id-type=\"doi\" and text()=\""+doi+"\"]/ancestor::sub-article";
 		break;
 	case "fig":
-		xpath="//object-id[text()=\""+doi+"\"]/../..";
+		xpath="//object-id[@pub-id-type=\"doi\" and text()=\""+doi+"\"][not(parent::fig[not(@specific-use) and ancestor::fig-group])]/parent::* | //object-id[@pub-id-type=\"doi\" and text()=\""+doi+"\"][parent::fig[not(@specific-use) and ancestor::fig-group]]/ancestor::fig-group | //article-id[@pub-id-type=\"doi\" and text()=\""+doi+"\"]/ancestor::sub-article";
 		break;
 	default:
 		break;
