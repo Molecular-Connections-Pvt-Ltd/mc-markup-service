@@ -56,9 +56,22 @@
 	<span class="x">, </span>
 	<span class="comment"><xsl:apply-templates/></span>
 </xsl:template>
+
+<xsl:include href="formatting.xsl" />
+
 <xsl:template match="ext-link[@ext-link-type = 'uri' and @xlink:href]">
-	<a href="{ext-link}" target="_blank"><xsl:apply-templates/></a>
+	
+	<xsl:choose>
+		<xsl:when test="starts-with(@xlink:href,'http')">		
+			<a href="{@xlink:href}" target="_blank"><xsl:apply-templates/></a>
+		</xsl:when>
+		<xsl:otherwise>
+			<a href="http://{@xlink:href}" target="_blank"><xsl:apply-templates/></a>
+		</xsl:otherwise>
+	</xsl:choose>
 </xsl:template>
-<xsl:include href="formatting.xsl"/>
+
+
+
 
 </xsl:stylesheet> 
